@@ -82,12 +82,15 @@ int main() {
 </code></pre>
 
 参照上文中的算法分析，很轻松就用C++实现出来，递归调用getOnePerm函数，递归结束条件为已经找到一次排列，而后返回查找下一次排列，直到所有排列已全部列出。
-##### 运行阶段
-编写好的cpp文件在Linux系统下可直接生成.out文件而后运行。在命令行输入命令r
+##### Linux上编译及运行
+编写好的cpp文件在Linux系统下可直接生成.out文件而后运行。在命令行输入命令如下：
 > #`g++ main.cpp -o main`<br/>
-> #`./main`
+> #`./main`<br/>
 
-![](暂时空着)
+当然这里的main.out文件以及创建好，直接来到项目路径下，而后输入第二条命令即可。<br/>
+![C++编译界面]()
+##### Windows上编译及运行
+坑待填
 #### Java
 ##### 代码片段
 <pre><code>package com.tanrui;
@@ -144,4 +147,17 @@ public class Permutation {
 }
 </code></pre>
 
-使用java编写此程序时不如C++那样轻松，原因在于我在C++与Java中都是用了Map，C++中自带Map类，而Java中仅提供Map接口，比较幸运的是前几日刚好看了下Java中Map和Set的实现方式，且自己也实现了这两个接口，这里直接拷贝过来用，美滋滋。<br/>实现的MyMap和MySet类代码就不在这里贴出来了，可在[github](https://github.com/RuiTan/FullPermutation/)
+使用java编写此程序时不如C++那样轻松，原因在于我在C++与Java中都是用了Map，C++中自带Map类，而Java中仅提供Map接口，比较幸运的是前几日刚好看了下Java中Map和Set的实现方式，且自己也实现了这两个接口，这里直接拷贝过来用，美滋滋。实现的MyMap和MySet类代码就不在这里贴出来了，在我的[github](https://github.com/RuiTan/FullPermutation/)中找到所有文件。
+##### Linux上编译及运行
+在使用Java编译时由于是第一次尝试用命令行编译所以遇到了一些障碍。这里整理一下遇到的问题。
+
+> - Java环境变量的设置<br/>由于Linux中自带了openJDK，显然不能时刻与Java官方版本一致，首先在下载最新版Java，这里用到的是[Java 9.0.1]()，下载后解压，在terminal中输入命令：<br/>` # vim /etc/profile `<br/>使用vim编辑器在文件最后插入：<br/><pre><code>export JAVA_HOME=/home/tanrui/jdk-9.0.1
+//这里是解压后的jdk路径
+export CLASSPATH=$CLASSPATH:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
+export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH:$HOME/bin</code></pre>
+而后使profile文件生效：<br/>` # source /etc/profile `<br/>查看Java版本：<br/>` # java -version `<br/>可看到：<pre><code>java version "9.0.1"
+Java(TM) SE Runtime Environment (build 9.0.1+11)
+Java HotSpot(TM) 64-Bit Server VM (build 9.0.1+11, mixed mode)</code></pre>说明配置成功。<br/><br/>
+> - 对java文件编译<br/>进入项目目录下，进行如下操作：<br/>` # javac Main.java `<br/>` # java Main `<br/>![Java编译界面]()<br/>同C++，class这里已经打包好，可直接进入class文件目录下使用第二条命令运行。
+##### Windows上编译及运行
+坑待填
