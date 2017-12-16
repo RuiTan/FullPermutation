@@ -147,7 +147,7 @@ public class Permutation {
 }
 </code></pre>
 
-使用java编写此程序时不如C++那样轻松，原因在于我在C++与Java中都是用了Map，C++中自带Map类，而Java中仅提供Map接口，比较幸运的是前几日刚好看了下Java中Map和Set的实现方式，且自己也实现了这两个接口，这里直接拷贝过来用，美滋滋。实现的MyMap和MySet类代码就不在这里贴出来了，在我的[github](https://github.com/RuiTan/FullPermutation/)中找到所有文件。
+使用java编写此程序时不如C++那样轻松，原因在于我在C++与Java中都是用了Map，C++中自带Map类，而Java中仅提供Map接口，比较幸运的是前几日刚好看了下Java中Map和Set的实现方式，且自己也实现了这两个接口，这里直接拷贝过来用，美滋滋。实现的MyMap和MySet类代码就不在这里贴出来了，在我的[github](https://github.com/RuiTan/FullPermutation/)中找到所有文件，关于实现这两个接口的更多细节，有时间再写一篇博文分析之。
 ##### Linux上编译及运行
 在使用Java编译时由于是第一次尝试用命令行编译所以遇到了一些障碍。这里整理一下遇到的问题。
 
