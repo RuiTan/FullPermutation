@@ -1,11 +1,13 @@
 #include <iostream>
 #include <map>
+#include <stdlib.h>
+#include <time.h>
 #define MAXSIZE 10
 using namespace std;
 
 class Permutation{
 public:
-    explicit Permutation() = default;
+    explicit Permutation(){};
     explicit Permutation(int size):theSize(size), Count(0){
         if (size > MAXSIZE || size <= 0){
             cerr << "Bad input!" << endl;
@@ -17,7 +19,7 @@ public:
             //Using map to store the initial members, every element marks as gettable.
         }
     };
-    ~Permutation() = default;
+    ~Permutation(){};
     void getPermutations(ostream &out){
         getOnePerm(theMembers, theSize, 0, out);
     }
