@@ -8,17 +8,17 @@ public class Main {
     public static void main(String[] args) throws IOException {
         int size;
         Scanner scanner = new Scanner(System.in);
-        System.out.print("请输入全排列的数量（介于0-10之间）：");
+        System.out.print("Please input the amount of permutation between 0 and 10 : ");
         size = scanner.nextInt();
         if (size <= 0 || size >= 10){
-            System.out.println("输入有误！");
+            System.out.println("Bad input!");
             return;
         }
         long start = System.currentTimeMillis();
         Permutation permutation = new Permutation(size);
         permutation.getPermutation();
-        System.out.println(size+"个元素的全排列"+"共有" + permutation.getCount()+"个！");
+        System.out.println(size+" elements has " + permutation.getCount()+" permutations!");
         long finish = System.currentTimeMillis();
-        System.out.println("共花费了"+(finish-start)/1000.0+"秒！");
+        System.out.println("It costs "+(finish-start)/1000.0+" seconds!");
     }
 }
