@@ -11,13 +11,13 @@ public:
     explicit Permutation() = default;
     explicit Permutation(int size):theSize(size), Count(0){
         if (size > MAXSIZE || size <= 0){
-            cerr << "输入过大或过小!" << endl;
+            cerr << "Bad input!" << endl;
             exit(1);
         }
         theMembers = (char*) malloc(sizeof(char)*size);
         for (int i = 0; i < size; ++i) {
             initialMembers.insert(pair<char, bool>(static_cast<const char &>(i + 65), false));
-            //使用map存储初始集合，以及其时候已被取到（即value的bool值）
+            //Using map to store the initial members, every element marks as gettable.
         }
     };
     ~Permutation() = default;
@@ -25,15 +25,15 @@ public:
         getOnePerm(theMembers, theSize, 0, out);
     }
     void getCount(ostream &out){
-        out << theSize << "个元素共有" << Count << "全排列!" << endl;
+        out << theSize << " elements have " << Count << " permutations!" << endl;
     }
 protected:
     int theSize;
     int Count;
     char* theMembers;
-    //存储全排列，每次存满将会输出
+    //Store a kind of permutation
     map<char, bool> initialMembers;
-    //参考值map，key值是数列中的元素（本题为ABC…），初始状态所有key标记均为false
+    //The keys are letters in this question, and the values are all initialized as false.
     void printOnePerm(char* members, int size, ostream &out){
         out << "(";
         for (int i = 0; i < size; ++i) {
@@ -47,7 +47,11 @@ protected:
     void getOnePerm(char* members, int size, int index, ostream &out){
         for (int i = 0; i < size; ++i) {
             if (!initialMembers[i+65]){
-                //  当操作位置到达最后一个元素时，此时map中一定仅有一个key的value为false，此时将数列输出，若未到达最后一个元素，这value为false的参考值数量与theMembers中未定值的数量必定相等，如此选择任意一个，而后对下一个位置递归操作
+                //  When the operation comes to the last element, there is only one element in this
+                // map which value is false, and print the array at the moment. But if it doesn't, 
+                // then the amount of elements which values are false must be the same as the amount
+                // of unkown value in TheMembers array. And then choose a valid member, and operate to 
+                // next position recurisivly. 
                 initialMembers[i+65] = true;
                 theMembers[index] = static_cast<char>(i + 65);
                 if (index == size-1){
@@ -57,26 +61,25 @@ protected:
                     getOnePerm(members, size, index+1, out);
                 }
                 initialMembers[i+65] = false;
-                //回退时将已标记的参考值取消标记，让其能被后面循环中的元素取道
+                //  When back to the upper operation, the mark of the member should be canceled, 
+                // making sure that the next operation can reach it.
             }
         }
     }
 };
 
 int main() {
-    cout << "请输入全排列的数量（介于0-10之间）：";
+    cout << "Please input the amount of permutation between 0 and 10 : ";
     int amount;
     cin >> amount;
     clock_t start = clock();
-    //计时器开始
     Permutation permutation(amount);
     permutation.getPermutations(cout);
     permutation.getCount(cout);
-    //创建Permutation对象，并获取全排列
     clock_t finish = clock();
-    //计时器结束
     double duration = (double)(finish-start)/CLOCKS_PER_SEC;
-    cout << "共花费了" << duration << "s!" << endlfds
+    // get the cost of this algorithm.
+    cout << "It costs " << duration << " seconds!" << endl;
     return 0;
 }
 </code></pre>
@@ -161,3 +164,5 @@ Java HotSpot(TM) 64-Bit Server VM (build 9.0.1+11, mixed mode)</code></pre>说�
 > - 对java文件编译<br/>进入项目目录下，进行如下操作：<br/>` # javac Main.java `<br/>` # java Main `<br/>![Java编译界面]()<br/>同C++，class这里已经打包好，可直接进入class文件目录下使用第二条命令运行。
 ##### Windows上编译及运行
 坑待填
+
+### 
