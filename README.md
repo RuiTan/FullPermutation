@@ -93,7 +93,7 @@ int main() {
 第一行产生一个`main.out`文件，第二行运行之，当然这里的`main.out`文件以及创建好，直接来到项目路径下，而后输入第二条命令即可。<br/>
 ![C++编译界面]()
 ##### Windows上编译及运行
-跨平台编译一直是个头疼的问题，在写数据结构项目的时候就遇到了"\n\r"与"\n"的问题，这里出现了Linux里面UTF-8中文字符拿到Windows上面就自动转换为乱码，在VScode里面转换编码都改不过来，因此放弃了中文，所有注释用蹩脚的英语写了。
+跨平台编译一直是个头疼的问题，在写数据结构项目的时候就遇到了"\n\r"与"\n"的问题，这里出现了Linux里面UTF-8中文字符拿到Windows上面就自动转换为乱码，在VScode里面转换编码都改不过来，因此放弃了中文，所有注释用蹩脚的英语写了。（注：几天后发现还是自己的问题，由于IntelliJ上是默认UTF-8字符编码，而在Windows上他会默认使用GBK格式打开，因此在windows上先使用VScode将其转变为UTF-8时重新打开，而后选择用GBK格式保存即可）
 Windows上由于没有gcc，这里采用MinGW，其支持gcc一样的语法，用起来很顺。
 > #`g++ main.cpp -o main`<br/>
 > #`main`<br/>
@@ -155,11 +155,11 @@ public class Permutation {
 }
 </code></pre>
 
-使用java编写此程序时不如C++那样轻松，原因在于我在C++与Java中都是用了Map，C++中自带Map类，而Java中仅提供Map接口，比较幸运的是前几日刚好看了下Java中Map和Set的实现方式，且自己也实现了这两个接口，这里直接拷贝过来用，美滋滋。实现的MyMap和MySet类代码就不在这里贴出来了，在我的[github](https://github.com/RuiTan/FullPermutation/)中找到所有文件，关于实现这两个接口的更多细节，有时间再写一篇博文分析之。
+使用java编写此程序时不如C++那样轻松，原因在于我在C++与Java中都是用了Map，C++中自带Map类，而Java中仅提供Map接口(此时的我还不知道hashMap的存在)，比较幸运的是前几日刚好看了下Java中Map和Set的实现方式，且自己也实现了这两个接口，这里直接拷贝过来用，美滋滋。实现的MyMap和MySet类代码就不在这里贴出来了，在我的[github](https://github.com/RuiTan/FullPermutation/)中找到所有文件，关于实现这两个接口的更多细节，有时间再写一篇博文分享之。
 ##### Linux上编译及运行
 在使用Java编译时由于是第一次尝试用命令行编译所以遇到了一些障碍。这里整理一下遇到的问题。
 
-> - Java环境变量的设置<br/>由于Linux中自带了openJDK，显然不能时刻与Java官方版本一致，首先在下载最新版Java，这里用到的是[Java 9.0.1]()，下载后解压，在terminal中输入命令：<br/>` # vim /etc/profile `<br/>使用vim编辑器在文件最后插入：<br/><pre><code>export JAVA_HOME=/home/tanrui/jdk-9.0.1
+> - Java环境变量的设置<br/>由于Linux中自带了openJDK，显然不能时刻与Java官方版本一致，首先在下载最新版Java，这里用到的是[Java 9.0.1](https://www.java.com/zh_CN/download/linux_manual.jsp)，下载后解压，在terminal中输入命令：<br/>` # vim /etc/profile `<br/>使用vim编辑器在文件最后插入：<br/><pre><code>export JAVA_HOME=/home/tanrui/jdk-9.0.1
 //这里是解压后的jdk路径
 export CLASSPATH=$CLASSPATH:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
 export PATH=$JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH:$HOME/bin</code></pre>
@@ -168,6 +168,7 @@ Java(TM) SE Runtime Environment (build 9.0.1+11)
 Java HotSpot(TM) 64-Bit Server VM (build 9.0.1+11, mixed mode)</code></pre>说明配置成功。<br/><br/>
 > - 对java文件编译<br/>进入项目目录下，进行如下操作：<br/>` # javac Main.java `<br/>` # java Main `<br/>![Java编译界面]()<br/>同C++，class这里已经打包好，可直接进入class文件目录下使用第二条命令运行。
 ##### Windows上编译及运行
-坑待填
+Java不像C++，Java虚拟机保证了他的高可移植性，在Windows上和Linux编译的行为是差不多相同的。其问题和C++在Windows上编译一样，还是字符转换问题，其余同Linux。
 
-### 
+### 一个小比较
+从C++和Java跑的时间来看，C++却是比Java要略胜一筹。网上也总有高喊“不服跑个分”的C++程序员。当然，我也是最近才开始学Java，可以说就目前而言（指自己的水平以及遇到的需要解决的问题），我认为Java还是要比C++来的方便一点的。师傅和我说Java写多了会让人变懒，确实是。首先Java没有各式各样的指针，Java里全靠引用完成C++中指针所要完成的东西，与C++相比，不需要把精力放在防止内存泄漏等问题上，从而更多的关注于实现的方法。其次Java的各类IDE是比C++要接地气一点，大头VisualStudio是C类语言的本命IDE，包括Clion，就拿一点来说，这两个写C++的IDE中若是出现了一个未知的变量或函数（库文件中有），Java那些会提示你需要添加哪个包即可解决，而C++那些就是一个红标在那儿。<br/>当然，语言之间侧重点不同，将其拿来比本身就是不公平的，因此与其花时间纠结于那个语言更好，不如找个语言把它学好用好。（而我选Java
